@@ -3,7 +3,8 @@
     "description": "testing",
     "type": "project",
     "require": {
-        "google/apiclient": "^2.0"
+        "google/apiclient": "^2.0",
+        "vlucas/phpdotenv": "^2.4"
     },
     "authors": [
         {
