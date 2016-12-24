@@ -1,0 +1,16 @@
+{
+    "name": "rohit/authorization",
+    "description": "this will impleemt authenctication, session maintainance and authorization of various dudes according to role",
+    "authors": [
+        {
+            "name": "Rohit Tiwari",
+            "email": "rohittiwarirvt@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+    	"psr-4": {
+    		"RohitAuth\\": "src"
+    	}
+    }
+}
