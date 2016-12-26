@@ -9,6 +9,16 @@ $scripts = <<<EOT
 <script type="text/javascript" src="/src/Assets/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 EOT;
 
+$header = <<<EOT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Rohit Auth Application</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{$styles}
+{$scripts}
+<head>
 
-print $styles;
-print $scripts;
+EOT;
+
+print $header;
