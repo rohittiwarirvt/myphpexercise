@@ -2,10 +2,11 @@
 
 namespace RohitAuth\Routes\Http;
 
+use RohitAuth\Controllers;
 
 Class Routes {
 
-  public  $request, $routes[];
+  public  $request, $routes = [];
 
   public function __construct(Request $reqest) {
     $this->request = $request;
@@ -27,7 +28,17 @@ Class Routes {
         if ($route['method'] == $method && preg_match($pattern, $request_endpoint, $matches)) {
           array_shift($matches);
           $matches = array_merge($matches, $args);
-          $result = call_user_func_array($route['callback'], $matches);
+          if(is_string($routerPath) && strpos($route['callback'], '@') !== false) {
+            list($controller_name, $method) = explode('@', $route['callback']);
+            if (class_exists($controller_name)) {
+                $controller = new $controller_name();
+                $action_name = strtolower($verb) . 'Action';
+                $result = $controller->$method($matches);
+            }
+          } else {
+            $result = call_user_func_array($route['callback'], $matches);
+          }
+
         }
     }
     return $result;

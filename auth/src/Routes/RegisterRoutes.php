@@ -14,8 +14,10 @@ class RegisterRoutes {
   }
   public function initRoute() {
     // Products api
-    $this->route->addRoute('POST', '/user/login', function($args){
-      $product  = new Product();
-      return $this->response->responseOK($product->create($args));
-    });
+    // $this->route->addRoute('POST', '/user/login', function($args){
+    //   $product  = new Product();
+    //   return $this->response->responseOK($product->create($args));
+    // });
+
+    $this->route->addRoute("GET", "/user/login", "UserController@getPage");
 }
