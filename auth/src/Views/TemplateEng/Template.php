@@ -4,26 +4,39 @@ namespace RohitAuth\Views\TemplateEng;
 
 
 class Template {
+  protected $file;
+  private $vars = [];
 
-  public $entries = [];
+  public function __construct($file) {
+    $this->file = $file;
+  }
 
-  public $template_file;
+  public function __set($key, $value) {
+    $this->vars[$key] = $value;
+  }
 
-  private $_template;
+  public function __get($name) {
+    return $this->vars[$name];
+  }
 
-  private function _load_template() {
-    $this->template_file;
-    if (file_exists($this->$template_file) && is_readable($this->template_file)) {
-      $path = $template_file;
+  public function render() {
+    if (!file_exists($this->file)) {
+      throw new Exception("Error loading template file ($this->file).");
     }
+    extract($this->vars);
+    ob_start();
+    include($this->file ".php");
+    return ob_get_clean();
   }
 
-  private function _parse_template($extra = NULL) {
-
+  public static function merge($templates, $separator = "\n") {
+    $output = "";
+    foreach ($templates as  $template) {
+      $content = (get_class($template) !== "Template") ? "Error, incorrect type - expected Template." : $template->render();
+      $output .= $content . $separator;
+    }
+    return $output;
   }
 
-  public function generate_markup($extra = []) {
-    $this->_load_template();
-    return $this->_parse_template($extra);
-  }
+
 }
