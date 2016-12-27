@@ -6,18 +6,17 @@ use RohitAuth\Routes\Http\Routes;
 use RohitAuth\Routes\Http\Response;
 
 class RegisterRoutes {
-  protected  $route;
-  protected $response;
+
+  protected  $route, $response;
+
   public function __construct(Routes $route) {
     $this->route =$route;
     $this->response = new Response();
   }
+
   public function initRoute() {
-    // Products api
-    // $this->route->addRoute('POST', '/user/login', function($args){
-    //   $product  = new Product();
-    //   return $this->response->responseOK($product->create($args));
-    // });
 
     $this->route->addRoute("GET", "/user/login", "UserController@getPage");
+    $this->route->addRoute("GET", "/", "UserController@getPage");
+  }
 }
