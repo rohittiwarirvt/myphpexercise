@@ -2,13 +2,16 @@
 
 namespace RohitAuth\Views\TemplateEng;
 
+use Exception;
+use RohitAuth\Container\App;
 
 class Template {
-  protected $file;
+  protected $file, $tempate_loc;
   private $vars = [];
 
   public function __construct($file) {
     $this->file = $file;
+    $this->tempate_loc = App::$template_folder;
   }
 
   public function __set($key, $value) {
@@ -20,12 +23,13 @@ class Template {
   }
 
   public function render() {
-    if (!file_exists($this->file)) {
-      throw new Exception("Error loading template file ($this->file).");
+    $file = $this->tempate_loc . $this->file . ".php";
+    if (!file_exists($file)) {
+      throw new Exception("Error loading template file ($file)");
     }
     extract($this->vars);
     ob_start();
-    include($this->file ".php");
+    include($file);
     return ob_get_clean();
   }
 
