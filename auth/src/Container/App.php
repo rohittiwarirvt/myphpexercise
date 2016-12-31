@@ -9,13 +9,13 @@ class App {
   const CSS_DEFAULT = 1, JS_LIBRARY = 1;
 
   public  $header, $footer, $body ;
-  static  $data = [], $default = [], $template_folder, $styles = [], $scripts = [];
+  static  $data = [], $template_folder, $styles = [], $scripts = [];
 
   public function __construct() {
      self::$template_folder = "src/Views/phase1/templates/";
   }
   public static function addStyles($data, $options = []) {
-    self::$styles = self::appStaticVariables(__CLASS__ . __METHOD__);
+    self::$styles =& self::appStaticVariables(__CLASS__ . __METHOD__, array());
     if (isset($data)) {
       $default_options = array(
         'type' => 'file',
@@ -41,8 +41,7 @@ class App {
   }
 
   public static function addScripts($data, $options = []) {
-    self::$scripts = self::appStaticVariables(__CLASS__ . __METHOD__);
-    //var_dump(self::$scripts);
+    self::$scripts =& self::appStaticVariables(__CLASS__ . __METHOD__, array());
     if (isset($data)) {
       $default_options = array(
         'data' => $data,
@@ -58,8 +57,6 @@ class App {
       );
       $options = array_merge($default_options, $options);
       self::$scripts[$data] = $options;
-      //print_r($data);
-
      }
     return self::$scripts;
   }
@@ -72,33 +69,27 @@ class App {
     return $scripts;
   }
 
-  public static function appStaticVariables($name, $default_value = NULL) {
+  public static function &appStaticVariables($name, $default_value = NULL) {
     $data = NULL;
 
     if (isset(self::$data[$name]) || array_key_exists($name, self::$data)) {
-       $data = self::$data[$name];
-       print_r("\n" .$name);
-       print_r("\nset");
+        return self::$data[$name];
     }
 
     if (isset($name)) {
-      $data[$name] = self::$default[$name] = self::$data[$name] = $default_value;
-      $data = $data[$name];
-      print_r("\n" .  $name);
-      print_r("\nnotset");
-    } else {
-      foreach (self::$default as $name => $value) {
+       self::$data[$name] =& $default_value;
+       return self::$data[$name];
+
+    } 
+
+    foreach (self::$data as $name => $value) {
         $data[$name] = $value;
       }
-    }
 
-
-    // print_r($name);
-    // print_r($data);
     return $data;
   }
 
-  public function render($variables) {
+  public function   render($variables) {
       // styles
     self::addStyles("vendor/bower_components/bootstrap/dist/css/bootstrap.min.css");
     $styles_tpl = new Template("styles.tpl");
