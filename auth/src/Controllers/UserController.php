@@ -12,9 +12,15 @@ class UserController {
 
   }
 
-  public function getPage(){
+  public function login(){
     $login_tpl = new Template("login.tpl");
     App::addStyles("public/stylesheets/login.css");
     return $login_tpl->render();
+  }
+
+  public function registration() {
+    $register_tpl = new Template("registration.tpl");
+    //App::addStyles("public/stylesheets/register.css");
+    return $register_tpl->render();  	
   }
 }

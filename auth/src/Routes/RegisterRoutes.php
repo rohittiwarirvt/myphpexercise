@@ -16,7 +16,9 @@ class RegisterRoutes {
 
   public function initRoute() {
 
-    $this->route->addRoute("GET", "/user/login", "UserController@getPage");
-    $this->route->addRoute("GET", "/", "UserController@getPage");
+    $this->route->addRoute("GET", "/user/login", "UserController@login");
+    $this->route->addRoute("GET", "/", "UserController@login");
+    $this->route->addRoute("GET", "/user/register", "UserController@registration");
+    $this->route->addRoute("GET", "/error404", "CommonController@notfound");
   }
 }
