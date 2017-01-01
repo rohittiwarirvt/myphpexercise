@@ -51,6 +51,11 @@ Class Routes {
 
         }
     }
+
+    if (empty($result)) {
+      header('Location: /error404');
+      die;
+    }
     return $result;
   }
 }
