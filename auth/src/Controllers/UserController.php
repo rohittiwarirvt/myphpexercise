@@ -23,4 +23,10 @@ class UserController {
     //App::addStyles("public/stylesheets/register.css");
     return $register_tpl->render();  	
   }
+
+  public function addUser($request)
+  {
+    $args = $request['args'];
+    return "registered successfully";
+  }
 }
