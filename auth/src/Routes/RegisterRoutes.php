@@ -19,6 +19,7 @@ class RegisterRoutes {
     $this->route->addRoute("GET", "/user/login", "UserController@login");
     $this->route->addRoute("GET", "/", "UserController@login");
     $this->route->addRoute("GET", "/user/register", "UserController@registration");
+    $this->route->addRoute("POST", "/user/register", "UserController@addUser");
     $this->route->addRoute("GET", "/error404", "CommonController@notfound");
   }
 }

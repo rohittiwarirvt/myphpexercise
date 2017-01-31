@@ -34,7 +34,7 @@ class DatabaseConnection {
     }
   }
 
-  protected function initConnection() {
+  protected static function initConnection() {
 
      $connection_string = "mysql:host={$this->host]};port={$this->port};dbname={$this->db_name}";
      try {
