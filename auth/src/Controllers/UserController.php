@@ -6,10 +6,14 @@ use RohitAuth\Container\App;
 
 use RohitAuth\Views\TemplateEng\Template ;
 
+use RohitAuth\Models\Users;
+
 class UserController {
 
-  public function __construct() {
+  protected $user;
 
+  public function __construct() {
+    $this->user = new Users();
   }
 
   public function login(){
@@ -27,6 +31,8 @@ class UserController {
   public function addUser($request)
   {
     $args = $request['args'];
+    var_dump($args);  
+    $this->user->create($args);
     return "registered successfully";
   }
 }

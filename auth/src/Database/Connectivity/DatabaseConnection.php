@@ -17,7 +17,7 @@ class DatabaseConnection {
     $this->password = $password;
   }
 
-  public function getInstance($db_name, $host, $port, $username, $password) {
+  public static function getInstance($db_name, $host, $port, $username, $password) {
     if (self::$instance  == NULL) {
         $classname = __CLASS__;
         self::$instance = new $classname($db_name, $host, $port, $username, $password);
@@ -25,23 +25,22 @@ class DatabaseConnection {
     return self::$instance;
   }
 
-  public function getConnection($db_name = "rohit_auth", $host = "localhost", $port = "3306", $username = "root", $password = "root") {
+  public static function getConnection($db_name = "rohit_auth", $host = "localhost", $port = "3306", $username = "root", $password = "root") {
     try {
-      $db = $this->getInstance($db_name, $host, $port, $username, $password);
+      $db = self::getInstance($db_name, $host, $port, $username, $password);
      return  $db->initConnection();
     } catch(Exception $e) {
-      print "Error :" $e->getMessage() . "<br/>";
+      print "Error :" . $e->getMessage() . "<br/>";
     }
   }
 
-  protected static function initConnection() {
-
-     $connection_string = "mysql:host={$this->host]};port={$this->port};dbname={$this->db_name}";
+  protected  function initConnection() {
+     $connection_string = "mysql:host={$this->host};port={$this->port};dbname={$this->db_name}";
      try {
-      $this->db->pdo_connection = new PDO($connection_string, $this->username, $this->password);
+      $this->db->pdo_connection =  new PDO($connection_string, $this->username, $this->password);
       $this->db->pdo_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->db->pdo_connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-      return $this->db;
+      return $this->db->pdo_connection;
      } catch(Exception $e) {
         print "Error" . $e->getMessage(). "<br/>";
      }
