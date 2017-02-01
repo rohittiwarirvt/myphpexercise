@@ -1,7 +1,7 @@
 <?php
 
 
-echo "Enter the Experience";
+echo "Entdder the Experience";
 
 $exp = trim(fgets(STDIN));
 

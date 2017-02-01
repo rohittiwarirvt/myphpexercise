@@ -2,5 +2,8 @@
 *
 # But not these files...
 !.gitignore
-!auth/
+!auth
+
+# ...even if they are in subdirectories
+!*/
 
