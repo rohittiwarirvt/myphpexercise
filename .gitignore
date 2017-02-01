@@ -1,10 +1,12 @@
 # ignore everything
-*
+
 # But not these files...
 !.gitignore
-!auth/
-!auth
+/design-patterns
+/google-connect
+/php-snippets
+/wkhtmlusage
 
 # ...even if they are in subdirectories
-!*/
+
 
