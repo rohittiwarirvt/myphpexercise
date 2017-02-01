@@ -4,7 +4,7 @@ namespace RohitAuth\Models\Interfaces;
 
 use RohitAuth\Database\Connectivity\DatabaseConnection;
 
-abstract class CRUDAbstract implements CRUDAbstract
+abstract class CRUDAbstract implements CRUD
 {
 
 	protected $db_connect, $fillable, $table_name;
@@ -12,17 +12,14 @@ abstract class CRUDAbstract implements CRUDAbstract
 
 	public function __construct()
 	{
-		$this->db_connect = DatabaseConnection::initConnection();
+		$this->db_connect = DatabaseConnection::getConnection("rohit_auth", "localhost", 3306, "root", "rekha");
 		$this->init();
-	};
+	}
 
 
 	protected function init()
 	{
 		$this->column_names =  "(" . implode(",", $this->fillable) . ")";
-		$this->insertStmt = "UPDATE {$this->table_name} set {$set_values} where id=$id";
-	    $this->insertStmt = "";
-    	$this->deleteStmt = "DELETE from {$this->table_name} where id = $id";
 
 	}
 
@@ -70,7 +67,7 @@ abstract class CRUDAbstract implements CRUDAbstract
     	return $set_values;
   	}
 
-    public function create(array $data)
+    public function create($data)
   	{
   
   	  $column_values = $this->mapColumnValue($data);
@@ -102,7 +99,7 @@ abstract class CRUDAbstract implements CRUDAbstract
   		}
 	}
 
-	public findBy($options)
+	public function findBy($options)
 	{
 		$and_or_select = false;
 	    $first = isset($options['first']) ? true : false;
