@@ -117,13 +117,13 @@ abstract class CRUDAbstract implements CRUD
 	    $stmt = "select * from {$this->table_name} where ";
 	    if (!$and_or_select) {
 	      foreach ($defaults['and'] as $key => $value) {
-	        $stmt .= $key . '='. $value . ' AND ';
+	        $stmt .= $key . '="'. $value . '" AND ';
 	      }
 	      $stmt = rtrim($stmt, ' AND ');
 	    } else {
 	      // @Todo and and or grouping
 	    }
-	     // print_r($stmt);
+
 	    try {
 	      $query = $this->db_connect->query($stmt);
 
@@ -138,7 +138,7 @@ abstract class CRUDAbstract implements CRUD
 	    catch(PDOException $e) {
 	    echo  "<br>" . $e->getMessage();
 	    }
-	    // print_r($result);
+
 	    return $result;
 	}
 }
