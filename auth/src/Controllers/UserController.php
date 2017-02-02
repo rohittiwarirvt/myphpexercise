@@ -22,6 +22,14 @@ class UserController {
     return $login_tpl->render();
   }
 
+  public function authecticate($request)
+  {
+    $args = $request['args'];
+    $result = $this->user->findBy($args);
+    print_r($result);
+    return "Logged in successfully";
+  }
+
   public function registration() {
     $register_tpl = new Template("registration.tpl");
     //App::addStyles("public/stylesheets/register.css");
@@ -31,7 +39,6 @@ class UserController {
   public function addUser($request)
   {
     $args = $request['args'];
-    var_dump($args);  
     $this->user->create($args);
     return "registered successfully";
   }

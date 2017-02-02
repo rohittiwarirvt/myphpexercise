@@ -11,7 +11,7 @@
         <div class="form-group">
           <label class="control-label col-sm-2"><b>Username</b></label>
           <div class=" col-sm-8">
-          <input  class="form-control" type="text" placeholder="Enter Username" name="uname" required>
+          <input  class="form-control" type="text" placeholder="Enter Username" name="username" required>
           </div>
         </div>
         <div class="form-group">
