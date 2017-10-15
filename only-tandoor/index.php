@@ -71,10 +71,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="menu-list-navigation.html">Menu</a></li>
+                            <li><a href="menu-list-navigation.php">Menu</a></li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>
-                            <li class="has-dropdown">   
+                            <li class="has-dropdown">
                                 <a href="#">More</a>
                                 <div class="dropdown-container">
                                     <ul class="dropdown-mega">
@@ -94,7 +94,7 @@
                         </ul>
                     </nav>
                     <div class="module left">
-                        <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
+                        <a href="menu-list-navigation.php" class="btn btn-outline-secondary"><span>Order</span></a>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -117,7 +117,7 @@
 
         <div class="module module-nav-toggle">
             <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
-        </div>    
+        </div>
 
         <div class="module module-logo">
             <a href="index.html">
@@ -138,7 +138,7 @@
 
         <!-- Section - Main -->
         <section class="section section-main section-main-1 bg-light">
-            
+
             <div class="container dark">
                 <div class="slide-container">
                     <div id="section-main-1-carousel-image" class="image inner-controls">
@@ -183,7 +183,7 @@
             <div class="image right col-md-6 push-md-6">
                 <div class="bg-image"><img src="assets/img/photos/bg-food.jpg" alt=""></div>
             </div>
-        
+
             <div class="container">
                 <div class="col-lg-5 col-md-9">
                     <div class="rate mb-5 rate-lg"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star"></i></div>
@@ -289,42 +289,42 @@
             }'>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Burgers">
+                    <a href="menu-list-navigation.php#Burgers">
                         <img src="assets/img/photos/menu-sample-burgers.jpg" alt="" class="image">
                         <h3 class="title">Burgers</h3>
                     </a>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Pizza">
+                    <a href="menu-list-navigation.php#Pizza">
                         <img src="assets/img/photos/menu-sample-pizza.jpg" alt="" class="image">
                         <h3 class="title">Pizza</h3>
                     </a>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Sushi">
+                    <a href="menu-list-navigation.php#Sushi">
                         <img src="assets/img/photos/menu-sample-sushi.jpg" alt="" class="image">
                         <h3 class="title">Sushi</h3>
                     </a>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Pasta">
+                    <a href="menu-list-navigation.php#Pasta">
                         <img src="assets/img/photos/menu-sample-pasta.jpg" alt="" class="image">
                         <h3 class="title">Pasta</h3>
                     </a>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Desserts">
+                    <a href="menu-list-navigation.php#Desserts">
                         <img src="assets/img/photos/menu-sample-dessert.jpg" alt="" class="image">
                         <h3 class="title">Desserts</h3>
                     </a>
                 </div>
                 <!-- Menu Sample -->
                 <div class="menu-sample">
-                    <a href="menu-list-navigation.html#Drinks">
+                    <a href="menu-list-navigation.php#Drinks">
                         <img src="assets/img/photos/menu-sample-drinks.jpg" alt="" class="image">
                         <h3 class="title">Drinks</h3>
                     </a>
@@ -387,7 +387,7 @@
 
             <!-- BG Image -->
             <div class="bg-image bg-parallax"><img src="assets/img/photos/bg-croissant.jpg" alt=""></div>
-        
+
             <div class="container text-center">
                 <div class="col-lg-8 push-lg-2">
                     <h2 class="mb-3">Check our promo video!</h2>
@@ -401,7 +401,7 @@
 
         <!-- Footer -->
         <footer id="footer" class="bg-dark dark">
-            
+
             <div class="container">
                 <!-- Footer 1st Row -->
                 <div class="footer-first-row row">
