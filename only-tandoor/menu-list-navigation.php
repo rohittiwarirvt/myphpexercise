@@ -1,3 +1,8 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'] . '/src/menu_listing.php');
+$content = categoryListing();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,15 +59,7 @@
                     <nav class="module module-navigation left mr-4">
                         <ul id="nav-main" class="nav nav-main">
                             <li class="has-dropdown">
-                                <a href="#">Home</a>
-                                <div class="dropdown-container">
-                                    <ul>
-                                        <li><a href="index.html">Home Basic</a></li>
-                                        <li><a href="index-slider.html">Home Fullwidth Slider</a></li>
-                                        <li><a href="index-video.html">Home Video</a></li>
-                                    </ul>
-                                </div>
-                            </li>
+                                <a href="/">Home</a> </li>
                             <li class="has-dropdown">
                                 <a href="#">About</a>
                                 <div class="dropdown-container">
@@ -78,26 +75,8 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="has-dropdown">
-                                <a href="#">Menu</a>
-                                <div class="dropdown-container">
-                                    <ul>
-                                        <li class="has-dropdown">
-                                            <a href="#">List</a>
-                                            <ul>
-                                                <li><a href="menu-list-navigation.php">Navigation</a></li>
-                                                <li><a href="menu-list-collapse.html">Collapse</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-dropdown">
-                                            <a href="#">Grid</a>
-                                            <ul>
-                                                <li><a href="menu-grid-navigation.html">Navigation</a></li>
-                                                <li><a href="menu-grid-collapse.html">Collapse</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                            <li>
+                                <a href="menu-list-navigation.php">Menu</a></li>
                             </li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>
@@ -111,7 +90,6 @@
                                         <li><a href="blog.html">Blog</a></li>
                                         <li><a href="blog-sidebar.html">Blog + Sidebar</a></li>
                                         <li><a href="blog-post.html">Blog Post</a></li>
-                                        <li><a href="blog-post-sidebar.html">Blog Post + Sidebar</a></li>
                                         <li><a href="documentation.html">Documentation</a></li>
                                     </ul>
                                     <div class="dropdown-image">
@@ -126,7 +104,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="#" class="module module-cart right" data-toggle="panel-cart">
+                    <a href="#panel-cart" class="module module-cart right" data-toggle="collapse">
                         <span class="cart-icon">
                             <i class="ti ti-shopping-cart"></i>
                             <span class="notification">2</span>
@@ -153,7 +131,7 @@
             </a>
         </div>
 
-        <a href="#" class="module module-cart" data-toggle="panel-cart">
+        <a href="#panel-cart" class="module module-cart" data-toggle="collapse">
             <i class="ti ti-shopping-cart"></i>
             <span class="notification">2</span>
         </a>
@@ -164,69 +142,41 @@
     <!-- Content -->
     <div id="content">
 
-        <!-- Section -->
-        <section class="section section-lg bg-dark">
-
-            <!-- Video BG -->
-            <div class="bg-video" data-property="{videoURL:'https://youtu.be/t4gN-iqeY0E', showControls: false, containment:'self',startAt:1,stopAt:39,mute:true,autoPlay:true,loop:true,opacity:0.8,quality:'hd1080'}"></div>
-            <div class="bg-image bg-video-placeholder zooming"><img src="assets/img/photos/bg-restaurant.jpg" alt=""></div>
-
+        <!-- Page Title -->
+        <div class="page-title bg-light">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 push-lg-3">
-                        <!-- Book a Table -->
-                        <div class="utility-box">
-                            <div class="utility-box-title bg-dark dark">
-                                <div class="bg-image"><img src="assets/img/photos/modal-review.jpg" alt=""></div>
-                                <div>
-                                    <span class="icon icon-primary"><i class="ti ti-bookmark-alt"></i></span>
-                                    <h4 class="mb-0">Book a table</h4>
-                                    <p class="lead text-muted mb-0">Details about your reservation.</p>
-                                </div>
-                            </div>
-                            <form action="#" id="booking-form" data-validate>
-                                <div class="utility-box-content">
-                                    <div class="form-group">
-                                        <label>Name and surename:</label>
-                                        <input type="text" name="name" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>E-mail:</label>
-                                        <input type="email" name="email" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phone:</label>
-                                        <input type="text" name="phone" class="form-control" required>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Date:</label>
-                                                <input type="date" name="date" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label>Attendens:</label>
-                                                <input type="number" name="attendents" min="1" class="form-control" required>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit" type="submit">
-                                    <span class="description">Make reservation!</span>
-                                    <span class="success">
-                                        <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11"/></svg>
-                                    </span>
-                                    <span class="error">Try again...</span>
-                                </button>
-                            </form>
-                        </div>
+                    <div class="col-lg-8 push-lg-4">
+                        <h1 class="mb-0">Menu List</h1>
+                        <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
                     </div>
                 </div>
             </div>
+        </div>
 
-        </section>
+        <!-- Page Content -->
+        <div class="page-content">
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-md-3">
+                        <!-- Menu Navigation -->
+                        <nav id="menu-navigation" class="stick-to-content" data-local-scroll>
+                            <ul class="nav nav-menu bg-dark dark">
+                                <li><a href="#Burgers">Burgers</a></li>
+                                <li><a href="#Pasta">Pasta</a></li>
+                                <li><a href="#Pizza">Pizza</a></li>
+                                <li><a href="#Sushi">Sushi</a></li>
+                                <li><a href="#Desserts">Desserts</a></li>
+                                <li><a href="#Drinks">Drinks</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-md-9">
+                        <?php print $content; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Footer -->
         <footer id="footer" class="bg-dark dark">
@@ -299,66 +249,9 @@
         <div class="panel-cart-container">
             <div class="panel-cart-title">
                 <h5 class="title">Your Cart</h5>
-                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+                <button class="closde" data-target="#panel-cart" data-toggle="collapse"><i class="ti ti-close"></i></button>
             </div>
             <div class="panel-cart-content">
-                <table class="table-cart">
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
-                            <span class="caption text-muted">26”, deep-pan, thin-crust</span>
-                        </td>
-                        <td class="price">$9.82</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                            <span class="caption text-muted">Large (500g)</span>
-                        </td>
-                        <td class="price">$9.82</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                            <span class="caption text-muted">Small (200g)</span>
-                        </td>
-                        <td class="price text-success">$0.00</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name">Weekend 20% OFF</span>
-                        </td>
-                        <td class="price text-success">-$8.22</td>
-                        <td class="actions"></td>
-                    </tr>
-                </table>
-                <div class="cart-summary">
-                    <div class="row">
-                        <div class="col-7 text-right text-muted">Order total:</div>
-                        <div class="col-5"><strong>$21.02</strong></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-right text-muted">Devliery:</div>
-                        <div class="col-5"><strong>$3.99</strong></div>
-                    </div>
-                    <hr class="hr-sm">
-                    <div class="row text-lg">
-                        <div class="col-7 text-right text-muted">Total:</div>
-                        <div class="col-5"><strong>$24.21</strong></div>
-                    </div>
-                </div>
             </div>
         </div>
         <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
@@ -511,7 +404,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            <button type="button" class="add-to-cart modal-btn btn btn-secondary btn-block btn-lg" ><span>Add to Cart</span></button>
         </div>
     </div>
 </div>
