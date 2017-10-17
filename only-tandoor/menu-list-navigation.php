@@ -1,5 +1,5 @@
 <?php
-include_once('src/menu_listing.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/src/menu_listing.php');
 $content = categoryListing();
 ?>
 
@@ -76,7 +76,7 @@ $content = categoryListing();
                                 </div>
                             </li>
                             <li>
-                                <a href="menu-list-navigation.html">Menu</a></li>
+                                <a href="menu-list-navigation.php">Menu</a></li>
                             </li>
                             <li><a href="page-offers.html">Offers</a></li>
                             <li><a href="page-contact.html">Contact</a></li>
@@ -100,11 +100,11 @@ $content = categoryListing();
                         </ul>
                     </nav>
                     <div class="module left">
-                        <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
+                        <a href="menu-list-navigation.php" class="btn btn-outline-secondary"><span>Order</span></a>
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="#" class="module module-cart right" data-toggle="panel-cart">
+                    <a href="#panel-cart" class="module module-cart right" data-toggle="collapse">
                         <span class="cart-icon">
                             <i class="ti ti-shopping-cart"></i>
                             <span class="notification">2</span>
@@ -131,7 +131,7 @@ $content = categoryListing();
             </a>
         </div>
 
-        <a href="#" class="module module-cart" data-toggle="panel-cart">
+        <a href="#panel-cart" class="module module-cart" data-toggle="collapse">
             <i class="ti ti-shopping-cart"></i>
             <span class="notification">2</span>
         </a>
@@ -249,66 +249,9 @@ $content = categoryListing();
         <div class="panel-cart-container">
             <div class="panel-cart-title">
                 <h5 class="title">Your Cart</h5>
-                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+                <button class="closde" data-target="#panel-cart" data-toggle="collapse"><i class="ti ti-close"></i></button>
             </div>
             <div class="panel-cart-content">
-                <table class="table-cart">
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
-                            <span class="caption text-muted">26”, deep-pan, thin-crust</span>
-                        </td>
-                        <td class="price">$9.82</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                            <span class="caption text-muted">Large (500g)</span>
-                        </td>
-                        <td class="price">$9.82</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                            <span class="caption text-muted">Small (200g)</span>
-                        </td>
-                        <td class="price text-success">$0.00</td>
-                        <td class="actions">
-                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            <span class="name">Weekend 20% OFF</span>
-                        </td>
-                        <td class="price text-success">-$8.22</td>
-                        <td class="actions"></td>
-                    </tr>
-                </table>
-                <div class="cart-summary">
-                    <div class="row">
-                        <div class="col-7 text-right text-muted">Order total:</div>
-                        <div class="col-5"><strong>$21.02</strong></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-7 text-right text-muted">Devliery:</div>
-                        <div class="col-5"><strong>$3.99</strong></div>
-                    </div>
-                    <hr class="hr-sm">
-                    <div class="row text-lg">
-                        <div class="col-7 text-right text-muted">Total:</div>
-                        <div class="col-5"><strong>$24.21</strong></div>
-                    </div>
-                </div>
             </div>
         </div>
         <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
@@ -461,7 +404,7 @@ $content = categoryListing();
                     </div>
                 </div>
             </div>
-            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            <button type="button" class="add-to-cart modal-btn btn btn-secondary btn-block btn-lg" ><span>Add to Cart</span></button>
         </div>
     </div>
 </div>
