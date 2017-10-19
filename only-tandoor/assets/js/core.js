@@ -25,8 +25,8 @@ var $body = $('body'),
   $navAdditional = $('#nav-additional'),
   trueMobile,
   $bodyOverlay = $('#body-overlay'),
-  $backToTop = $('#back-to-top');
-
+  $backToTop = $('#back-to-top'),
+  $headerCart = $(".module-cart");
 var $panelCartToggle = $('[data-toggle="panel-cart"]'),
   $panelCart = $('#panel-cart');
 
@@ -91,6 +91,19 @@ var Core = {
       this.backgrounds();
       this.parallax();
       this.navigation();
+      this.attachEvents();
+    },
+    attachEvents: function() {
+      var cartRefreshsucessCallback = function(data) {
+        $headerCart.find('.notification').text(data.count);
+        $headerCart.find('.cart-value').text(data.total_price);
+      }
+      $headerCart.off('cartRefresh').on('cartRefresh', function(event, data) {
+        var options = {'url': 'src/cart_header.php', 'success': cartRefreshsucessCallback};
+        ajaxBuilder(options);
+      });
+
+      $headerCart.trigger('cartRefresh');
     },
     animations: function() {
       // Animation - appear
@@ -352,18 +365,12 @@ var Core = {
     },
     cart: function() {
 
-      // Panel Cart
-      // $panelCartToggle.on('click', function(){
-      //     if($panelCart.hasClass('show')) {
-      //         hidePanelCart();
-      //     } else {
-      //         showPanelCart();
-      //     }
-      //     return false;
-      // });
-
+      $body.off('initializeCartBody').on('initializeCartBody', function(){
+        initializeCartPage();
+      });
+      var cartContent = $panelCart.find('.panel-cart-content');
       var cartSuccessCallback = function(data) {
-        var cartContent = $panelCart.find('.panel-cart-content');
+        $panelCart.children('.panel-cart-content').remove();
         if (data.is_empty == 'true') {
           cartContent.html(data.content);
         } else {
@@ -371,12 +378,31 @@ var Core = {
         }
 
       }
-      $panelCart.on('show.bs.collapse', function(event) {
-        var cartPanel = $(this);
-        cartPanel.children('.panel-cart-content').remove();
+      var removeCartSuccessCallback = function(data) {
+        $body.trigger('initializeCartBody');
+        $headerCart.trigger('cartRefresh');
+      }
+      var initializeCartPage =  function() {
         var options = {'url': 'src/cart.php', type: 'GET', success: cartSuccessCallback};
         ajaxBuilder(options);
+      }
+      $panelCart
+      .on('show.bs.collapse', function(event) {
+        $bodyOverlay.fadeIn(400);
+        initializeCartPage();
       })
+      .on('hide.bs.collapse', function(event) {
+          $bodyOverlay.fadeOut(400);
+      });
+
+      $panelCart.on('click', '.remove-item', function(event) {
+        event.stopPropagation();
+        var $trWrapper = $(this).parents('tr');
+        var line_item_id = $trWrapper.data('cartProduct').line_item_id;
+        var options = {'url': 'src/remove_from_cart.php', data: {line_item_id: line_item_id}, type: 'POST', success: removeCartSuccessCallback};
+        ajaxBuilder(options);
+      })
+
 
     },
     forms: function(){
@@ -538,21 +564,23 @@ var Core = {
           $(modal + ' iframe').remove();
           $modalContent.html('<iframe height="500"></iframe>');
         })
-
         return false;
       });
 
       var $productModal = $('#productModal');
-      var headerCart = $(".module-cart");
+
+
+
       var sucessCallback = function(data) {
-        headerCart.find('.notification').text(data.count);
-        headerCart.find('.cart-value').text(data.total_price);
+        $headerCart.trigger('cartRefresh',[data]);
         var old_html = $productModal.find('.modal-content').html();
         $productModal.find('.modal-content').text("Added to cart succesfully.")
         setTimeout(function(){
-        $productModal.modal('hide');
-        $productModal.find('.modal-content').html(old_html);
+          $productModal.modal('hide');
         }, 1000);
+        setTimeout(function(){
+          $productModal.find('.modal-content').html(old_html);
+        }, 1500);
 
       }
 
@@ -575,12 +603,10 @@ var Core = {
         var options = {'url': 'src/add_to_cart.php', 'data': queryString, 'success': sucessCallback};
         //addToCartBtn.on('click', ajaxBuilder(options));
         addToCartBtn.off('click').on('click', function(event){
-        event.stopPropagation();
-        ajaxBuilder(options);
+          event.stopPropagation();
+          ajaxBuilder(options);
         });
       })
-
-
 
     },
     tooltip: function() {
