@@ -16,10 +16,12 @@
 // print_r(categoryListing());
 
 function findIndex($haystack, $where) {
-  print_r($haystack);
+   //print_r($where);
   foreach ($haystack as $key => $value) {
     $to_search_key = key($where);
-    print_r($value[$to_search_key] == $where[$to_search_key]);
+    var_dump($to_search_key);
+    var_dump($value);
+     var_dump($value[$to_search_key] == (int)$where[$to_search_key]);
     if (array_key_exists($to_search_key, $value) && $value[$to_search_key] == $where[$to_search_key]) {
 
       return $key;
@@ -30,38 +32,10 @@ function findIndex($haystack, $where) {
 }
 
 
-$line_item = array (
-  'line_item' =>
-  array (
-    0 =>
-    array (
-      'line_item_id' => 2,
-      'product_id' => '5',
-      'quantity' => '1',
-    ),
-    1 =>
-    array (
-      'line_item_id' => 3,
-      'product_id' => '1',
-      'quantity' => '1',
-    ),
-    2 =>
-    array (
-      'line_item_id' => 4,
-      'product_id' => '2',
-      'quantity' => '1',
-    ),
-  ),
-);
+session_start();
+$last_item_id = 1;
+$_SESSION['line_item'] = isset($_SESSION['line_item']) ? $_SESSION['line_item'] : array();
+$line_item = $_SESSION['line_item'];
 
-$line_item_index = findIndex($line_item['line_item'], array('product_id' => 5));
-
+$line_item_index = findIndex($line_item, array('last_item_id' => $last_item_id));
 var_dump($line_item_index);
-// if ($line_item_index !== false) {
-//   $quantity = $line_item[$line_item_index]['quantity'] + $quantity;
-//   $line_item[$line_item_index]['quantity'] = $quantity;
-
-// } else {
-//  $count++;
-//  $line_item[] = array('line_item_id' => $count, 'product_id' => $product_id, 'quantity' => $quantity);
-// }
